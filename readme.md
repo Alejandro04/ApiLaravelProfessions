@@ -1,3 +1,12 @@
+## Por favor seguir las indicaciones
+
+1. Configurar .env 
+2. Ejecutar migraciones: php artisan migrate
+3. Ejecutar seeders: php artisan db:seed
+4. Levantar servicios: php artisan serve
+5. Probar en postman las colecciones envíadas
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
