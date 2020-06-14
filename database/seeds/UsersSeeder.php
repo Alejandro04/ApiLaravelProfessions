@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
                 'gender' =>  $faker->randomElement(['Masculino','Femenino', 'No definido']),
                 'birthdate' => date('Y-m-d H:m:s'),
                 'email' => $faker->email,
-                'password' => '12345678',
+                'password' => Hash::make('12345678'),
                 'profession_id' => $faker->randomElement(['1','2','3']),
                 'vehicle_id' => $faker->randomElement(['1','2','3']),
                 'municipality_id' => $faker->randomElement(['1','2','3']),

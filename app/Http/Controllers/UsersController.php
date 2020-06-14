@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -31,7 +32,7 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required|numeric',
+            'phone' => 'required',
             'address' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -49,7 +50,7 @@ class UsersController extends Controller
                 'gender' => $request->gender,
                 'birthdate' => $request->birthdate,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
                 'profession_id' => $request->profession_id,
                 'vehicle_id' => $request->vehicle_id,
                 'municipality_id' => $request->municipality_id,
@@ -84,7 +85,7 @@ class UsersController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required|numeric',
+            'phone' => 'required',
             'address' => 'required',
             'email' => 'required|string|email|max:255|unique:users'
         ]);
@@ -100,10 +101,11 @@ class UsersController extends Controller
             $user->address = $request->address;
             $user->gender = $request->gender;
             $user->birthdate = $request->birthdate;
+            $user->password = Hash::make($request->password);
             $user->email = $request->email;
             $user->profession_id = $request->profession_id;
             $user->vehicle_id = $request->vehicle_id;
-            $user->municipality = $request->municipality;
+            $user->municipality_id = $request->municipality_id;
             $user->save();
 
             return $user;

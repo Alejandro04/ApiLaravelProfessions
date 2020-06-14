@@ -26,7 +26,7 @@ class User extends Authenticatable
         'password',
         'profession_id',
         'vehicle_id',
-        'municipality_id'
+        'municipality_id',
     ];
 
     /**
