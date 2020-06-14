@@ -15,4 +15,9 @@ class Municipality extends Model
       'name'
   ];
 
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
 }

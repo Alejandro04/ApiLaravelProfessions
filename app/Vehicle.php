@@ -15,4 +15,9 @@ class Vehicle extends Model
       'brand', 'year'
   ];
 
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
 }
