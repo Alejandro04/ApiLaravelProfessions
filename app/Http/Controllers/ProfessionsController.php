@@ -15,7 +15,7 @@ class ProfessionsController extends Controller
      */
     public function index()
     {
-        $professions = Profesion::all();
+        $professions = Profession::all();
         return $professions;
     }
 
