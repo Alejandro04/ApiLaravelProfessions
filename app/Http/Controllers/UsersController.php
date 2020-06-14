@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\User;
 use Hash;
 
@@ -82,27 +83,24 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'email' => 'required|string|email|max:255|unique:users'
         ]);
         if ($validator->fails()) 
         {
             return response()->json(['errors' => $validator->errors()], 422);
    
         }else{
-            $user = User::find($id);
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->phone = $request->phone;
             $user->address = $request->address;
             $user->gender = $request->gender;
             $user->birthdate = $request->birthdate;
-            $user->password = Hash::make($request->password);
-            $user->email = $request->email;
             $user->profession_id = $request->profession_id;
             $user->vehicle_id = $request->vehicle_id;
             $user->municipality_id = $request->municipality_id;
