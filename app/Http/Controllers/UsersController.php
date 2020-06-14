@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\User;
 use Hash;
+use DB;
 
 class UsersController extends Controller
 {
@@ -17,7 +18,18 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+
+        $users = DB::table('users')
+            ->join('vehicles', 'users.vehicle_id', '=', 'vehicles.id')
+            ->join('professions', 'users.profession_id', '=', 'professions.id')
+            ->join('municipalities', 'users.municipality_id', 'municipalities.id')
+            ->select('users.id', 'users.first_name', 'users.last_name', 'users.email', 'users.phone',
+            'users.address', 'users.birthdate', 'users.gender', 
+            'professions.name as name_profession',
+            'vehicles.year as year', 'vehicles.brand as brand',
+            'municipalities.name as name_municipality')
+            ->get();
+
         return $users;
     }
 
